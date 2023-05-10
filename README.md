@@ -49,6 +49,8 @@ In the future, we plan to add the following features to FuelFinder, in addition 
 - Additional Support and optimization for electric vehicles, including charging times and costs.
 - Integration with GPS data to suggest the best refueling stops based on the driver's location in real-time.
 
+Additionally, we are planning to add a basic GUI and write the calculation phase in C++ so that we can better leverage system resources to opimize for performance.
+
 ## Contributions
 
 Contributions to FuelFinder are welcome! If you find a bug or have a suggestion for a new feature, please submit an issue on the GitHub repository.
