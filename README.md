@@ -26,7 +26,7 @@ FuelFinder consists of two phases: data-collection and calculation.
 
 During the data-collection phase, FuelFinder gathers information on car mileage, fuel tank capacity, and fuel prices/time costs for every stop along the route. 
 
-In the calculation phase, FuelFinder uses this data to determine the most efficient refueling strategy, leveraging dynamic and systems programming to implement an efficient algorithm and optimize performance using system resources.
+In the calculation phase, FuelFinder uses this data to determine the most efficient refueling strategy, leveraging dynamic and systems programming to implement an efficient algorithm and optimize performance using system resources
 
 ## Limitations
 
