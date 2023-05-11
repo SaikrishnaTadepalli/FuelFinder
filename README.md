@@ -7,7 +7,7 @@ To use FuelFinder, you'll need to have Python 3.x installed on your machine. You
 
 Once you have Python installed, you can clone the FuelFinder repository from GitHub:
 ```
-git clone https://github.com/[SaikrishnaTadepalli]/FuelFinder.git
+git clone https://github.com/SaikrishnaTadepalli/FuelFinder.git
 ```
 
 Finally, run the main.py file to start the program:
