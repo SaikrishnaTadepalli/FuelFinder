@@ -1,19 +1,19 @@
 '''
 Input:
 
-- Fuel Economy (kmpl)
-- Fuel Capacity in L(capacity)
+- Fuel Economy in KM/L (kmpl)
+- Fuel Capacity in L (capacity)
 - Budget (budget)
 
 - Number of Stops (numStops)
 
 - Distance from current stop to the next in KM (distToNext[])
-- Time from current stop to the next in mins (timeToNext[])
+- Time from current stop to the next in Minutes (timeToNext[])
 
 - Time to get from the highway to the fuel station 
-  and back onto the highway in mins(refuelTravelTime[])
+  and back onto the highway in Minutes(refuelTravelTime[])
 
-- Unit Money Cost to refill per location (unitMoneyCost[])
+- Unit Money Cost to refill per location in Dollars/Liter (unitMoneyCost[])
 '''
 
 minTimeMap = {}
@@ -39,7 +39,7 @@ def Solve(FE, FC, B, N, distToNext,
             return (minTimeMap[curKey], fuelAddedMap[curKey])
         
         possibleRefuels = []
-
+        
         refuelAmount = 0
         while (curAmntFuel + refuelAmount <= FC):
             moneySpentToRefuel = refuelAmount * unitMoneyCost[curLoc]
