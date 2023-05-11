@@ -24,7 +24,7 @@ python main.py
 
 FuelFinder consists of two phases: data-collection and calculation. 
 
-During the data-collection phase, FuelFinder gathers information on car mileage, fuel tank capacity, and fuel prices/time costs for every stop along the route. 
+During the data-collection phase, FuelFinder gathers information on car's fuel economy, fuel tank capacity, and fuel prices/time costs for every stop along the route. 
 
 In the calculation phase, FuelFinder uses this data to determine the most efficient refueling strategy, leveraging dynamic and systems programming to implement an efficient algorithm and optimize performance using system resources
 
@@ -35,6 +35,7 @@ FuelFinder has a few limitations:
 - It only considers highway exits for refueling stops.
 - It assumes that the closest fuel stop to each exit is the best option.
 - It does not take into account traffic conditions or road closures.
+- It does not consider passender behavior such as lights, charging devices, using radio/speaker, AC/Heater etc. and the impact of each on the fuel.
 - It does not consider how weather conditions and terrain of route can affect the car's mileage and travel time.
 - It does not take into account additional costs such as tolls, parking fees, and any other expenses that may arise during the trip.
 - It does not account for lunch breaks, washroom breaks, and wait times at toll booths, borders etc.
@@ -49,7 +50,7 @@ In the future, we plan to add the following features to FuelFinder, in addition 
 - Additional Support and optimization for electric vehicles, including charging times and costs.
 - Integration with GPS data to suggest the best refueling stops based on the driver's location in real-time.
 
-Additionally, we are planning to add a basic GUI and write the calculation phase in C++ so that we can better leverage system resources to opimize for performance.
+Additionally, we are planning to create a basic GUI so that the app is easier to use.
 
 ## Contributions
 
