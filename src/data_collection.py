@@ -3,7 +3,7 @@
 
 
 def Main():
-    # Get Information about Cat
+    # Get Information about Car
     # Get Information about Trip
     # Get Information about Fuel Prices
 
