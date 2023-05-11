@@ -36,7 +36,7 @@ FuelFinder has a few limitations:
 - It assumes that the closest fuel stop to each exit is the best option.
 - It does not take into account traffic conditions or road closures.
 - It does not consider passender behavior such as lights, charging devices, using radio/speaker, AC/Heater etc. and the impact of each on the fuel.
-- It does not consider how weather conditions and terrain of route can affect the car's mileage and travel time.
+- It does not consider how time of day, weather conditions, and terrain of route can affect the car's mileage and travel time.
 - It does not take into account additional costs such as tolls, parking fees, and any other expenses that may arise during the trip.
 - It does not account for lunch breaks, washroom breaks, and wait times at toll booths, borders etc.
 
