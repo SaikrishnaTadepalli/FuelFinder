@@ -16,7 +16,7 @@ def verify_address(address):
 
 def Main():
     # WELCOME MESSAGE HERE
-
+    
     # Get Starting Location
     startingLocation = False
     while not startingLocation:
@@ -31,7 +31,7 @@ def Main():
 
     # Get Trip Budget
     budget = None
-    while not (type(0) is int) or budget < 0:
+    while not budget or budget < 0:
         try:
             budget = float(input('\nWhat is your budget for this trip? (In Dollars)\n> '))
             if budget < 0: 
@@ -39,20 +39,28 @@ def Main():
         except ValueError:
             print("Invalid input. Please enter a valid number.")
 
-    # 
-    car = input('\nWhat is the Make and Model of your car? (Toyota Carolla, Honda Civic etc.)\n> ')
+    # ---------------------------------------------------------
+    # UNABLE TO FIND CAR DATABASE RIGHT NOW. GET DATA FROM USER.
+    # car = input('\nWhat is the Make and Model of your car? (Toyota Corolla, Honda Civic etc.)\n> ')
 
+    # Get fuel capacity from user right now. Change later to an API call
+    capacity = float(input('\nEnter Fuel Capacity: (in L)\n>'))
+    # Get fuel economy from user right now. Change later to an API call
+    fuelEconomy = float(input('\nEnter Fuel Economy: (in KM/L)\n>'))
+    # ---------------------------------------------------------
+
+    print('\nHere is the final data:')
+    print(startingLocation)
+    print(endingLocation)
+    print(budget)
+    print(capacity)
+    print(fuelEconomy)
+    
     # Begin Data Collection Phase
     # (Data Collection Phase ends)
 
     # Begin Calculation Phase
     # (Calculation Phase ends)
-
-    pass
-
-
-
-
 
 print('==================================================\n')
 Main()
