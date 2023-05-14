@@ -119,7 +119,7 @@ def DataCollection(start_location, end_location):
     fuel_stop_dists = GetFuelStopDistances(start_location, end_location, potential_fuel_stops)
     time_to_fuel_stops = GetFuelStopTimes(potential_fuel_stops)
     fuel_prices = GetFuelPrices(potential_fuel_stops)
-    
+
 
 def Main():
     # Get Information about Car

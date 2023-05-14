@@ -1,6 +1,9 @@
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderServiceError
 
+import data_collection
+import calculation
+
 # Using for Address Verification
 geolocator = Nominatim(user_agent="address_verification")
 def verify_address(address):
@@ -57,11 +60,9 @@ def Main():
     print(fuelEconomy)
     
     # Begin Data Collection Phase
-    # (Data Collection Phase ends)
+    data_collection.Main()
 
     # Begin Calculation Phase
-    # (Calculation Phase ends)
+    calculation.Main()
 
-print('==================================================\n')
 Main()
-print('\n==================================================')
