@@ -10,9 +10,15 @@ Once you have Python installed, you can clone the FuelFinder repository from Git
 git clone https://github.com/SaikrishnaTadepalli/FuelFinder.git
 ```
 
+Next, install the necessairy dependencies:
+
+```
+pip install -r requirements.txt
+```
+
 Finally, run the main.py file to start the program:
 ```
-python main.py
+python ./src/main.py
 ```
 
 ## Features
