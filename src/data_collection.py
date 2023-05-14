@@ -7,27 +7,27 @@ from datetime import datetime
 # Set up Google Maps Client
 gmaps = googlemaps.Client(key='YOUR_API_KEY_HERE')
 
-# Gather Stuff Here
-def DataCollection(start_location, end_location):
-    # Get the directions from Google Maps
+# Get the directions from Google Maps
+def GetDirections(start_location, end_location):
     directions_result = gmaps.directions(
-        start_location, 
-        end_location, 
-        mode="driving", 
+        start_location,
+        end_location,
+        mode="driving",
         departure_time=datetime.now()
     )
+    return directions_result[0]['legs'][0]['steps']
 
-    # Extract the optimal route
-    route = directions_result[0]['legs'][0]['steps']
-    
-    # Extract highways and major roads
+# Extract highways and major roads
+def ExtractHighwayNames(route):
     highway_names = []
     for step in route:
         instr = step['html_instructions'].lower()
         if 'highway' in instr or 'toll road' in instr or 'freeway' in instr:
             highway_names.append(step['html_instructions'])
-    
-    # Find potential fuel stops
+    return highway_names
+
+# Find potential fuel stops
+def FindFuelStops(route):
     potential_fuel_stops = []
     for step in route:
         instr = step['html_instructions'].lower()
@@ -35,20 +35,13 @@ def DataCollection(start_location, end_location):
             for intersection in step['intersections']:
                 for road in intersection['roads']:
                     road_name = road['name'].lower()
-                    if 'gas' in road_name  or 'petrol' in road_name or 'fuel' in road_name:
+                    if 'gas' in road_name or 'petrol' in road_name or 'fuel' in road_name:
                         exit_name = f"{road['name']} on Exit {intersection['exit']}"
                         potential_fuel_stops.append((exit_name, intersection['location']))
-    
-    # Find distance between fuel stops
-    fuel_stop_dists = []
-    for i in range(len(potential_fuel_stops) - 1):
-        dist_result = gmaps.distance_matrix(
-            potential_fuel_stops[i][1], 
-            potential_fuel_stops[i+1][1], 
-            mode="driving"
-        )
-        fuel_stop_dists.append(dist_result['rows'][0]['elements'][0]['distance']['value'])
+    return potential_fuel_stops
 
+# Calculate distances between fuel stops
+def GetFuelStopDistances(start_location, end_location, potential_fuel_stops):
     # Calculate distances from starting location to the first exit
     start_to_first_exit = gmaps.directions(
         start_location, 
@@ -57,7 +50,7 @@ def DataCollection(start_location, end_location):
         )[0]['legs'][0]['distance']['value']
     dist_start_to_first_exit = start_to_first_exit[0]['legs'][0]['distance']['value']
 
-    # Calculate distances between fuel stops
+     # Calculate distances between fuel stops
     distance_between_fuel_stops = []
     for i in range(len(potential_fuel_stops) - 1):
         start = potential_fuel_stops[i][1]
@@ -84,50 +77,28 @@ def DataCollection(start_location, end_location):
     # Construct final distances array
     distances = [dist_start_to_first_exit] + distance_between_fuel_stops + [dist_last_exit_to_end]
     
-    # Find the time taken to get to each fuel stop
-    # THIS IS WRONG BECAUSE OF THE EXIT_RAMP_LOCATION
+    return distances
+
+# Calculate the time to reach the fuel stop from the exit ramp
+# THIS IS WRONG BECAUSE OF THE EXIT_RAMP_LOCATION
+def GetFuelStopTimes(potential_fuel_stops):
     time_to_fuel_stops = []
     for i in range(len(potential_fuel_stops)):
-        # GET VALUE HERE
+        # FIX exit_ramp_location VALUE
         exit_ramp_location = potential_fuel_stops[i][1]
         fuel_stop_location = potential_fuel_stops[i][1]
 
-        # Calculate the time to reach the fuel stop from the exit ramp
-        directions_result = gmaps.directions(exit_ramp_location, fuel_stop_location, mode="driving", departure_time=datetime.now())
-        time_exit_ramp_to_fuel_stop = directions_result[0]['legs'][0]['duration']['value']
+        directions_result = gmaps.directions(
+            exit_ramp_location, 
+            fuel_stop_location, 
+            mode="driving", 
+            departure_time=datetime.now()
+        )
 
+        time_exit_ramp_to_fuel_stop = directions_result[0]['legs'][0]['duration']['value']
         time_to_fuel_stops.append(time_exit_ramp_to_fuel_stop)
 
-    # Find the exit/stop names for each fuel stop
-    exit_names = [fuel_stop[0] for fuel_stop in potential_fuel_stops]
-    
-    '''
-    # Print the results
-    print('Highway and major road names:')
-    for name in highway_names:
-        print(name)
-        
-    print('\nPotential fuel stops:')
-    for stop in potential_fuel_stops:
-        print(stop[0], stop[1])
-        
-    print('\nExit/Stop names for each fuel stop:')
-    for name in exit_names:
-        print(name)
-
-    print('\nDistance between fuel stops:')
-    print(distance_between_fuel_stops)
-
-    print('\nTime to reach fuel stops:')
-    print(time_to_fuel_stops)
-    '''
-    return [
-        highway_names,
-        potential_fuel_stops,
-        distances,
-        time_to_fuel_stops
-    ]
-
+    return time_to_fuel_stops
 
 # COULDN'T FIND AN ONLINE DATABASE OF API FOR THIS
 # TRY PREDICTION OR WEB-SCRAPING
@@ -136,10 +107,19 @@ def CalculateFuelPrice(stop):
     pass
     # IMPLEMENTATION HERE
 
-def get_fuel_prices(potential_fuel_stops):
+def GetFuelPrices(potential_fuel_stops):
     fuel_prices = [CalculateFuelPrice(stop) for stop in potential_fuel_stops]
     return fuel_prices
 
+# Parent function to handle data collection
+def DataCollection(start_location, end_location):
+    route = GetDirections(start_location, end_location)
+    highway_names = ExtractHighwayNames(route)
+    potential_fuel_stops = FindFuelStops(route)
+    fuel_stop_dists = GetFuelStopDistances(start_location, end_location, potential_fuel_stops)
+    time_to_fuel_stops = GetFuelStopTimes(potential_fuel_stops)
+    fuel_prices = GetFuelPrices(potential_fuel_stops)
+    
 
 def Main():
     # Get Information about Car
