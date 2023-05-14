@@ -1,0 +1,25 @@
+Highway and major road names:
+Continue onto ON-401 W
+Merge onto ON-410 N
+Continue onto ON-410 N
+Merge onto ON-401 W
+Merge onto ON-401 Express W
+Continue onto ON-401 W
+
+Potential fuel stops:
+Esso Gas Station on Exit 33 (-79.911234, 43.707876)
+Shell Gas Station on Exit 38 (-80.124583, 43.499822)
+Petro-Canada Gas Station on Exit 45 (-80.274509, 43.409682)
+Esso Gas Station on Exit 49 (-80.379103, 43.392837)
+
+Exit/Stop names for each fuel stop:
+Esso Gas Station on Exit 33
+Shell Gas Station on Exit 38
+Petro-Canada Gas Station on Exit 45
+Esso Gas Station on Exit 49
+
+Distance between fuel stops:
+[7806, 11025, 5891]
+
+Time to reach fuel stops:
+[320, 455, 243]
