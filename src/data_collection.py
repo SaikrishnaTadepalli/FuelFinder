@@ -120,28 +120,23 @@ def DataCollection(start_location, end_location):
     time_to_fuel_stops = GetFuelStopTimes(potential_fuel_stops)
     fuel_prices = GetFuelPrices(potential_fuel_stops)
 
+    return {
+        "Route": route,
+        "Highway Names": highway_names,
+        "Potential Fuel Stops": potential_fuel_stops,
+        "Fuel Stop Distances": fuel_stop_dists,
+        "Time to Fuel Stops": time_to_fuel_stops,
+        "Fuel Prices": fuel_prices
+    }
 
-def Main():
-    # Get Information about Car
-    # Get Information about Trip
-    # Get Information about Fuel Prices
+
+def Main(start_location, end_location):
+    # Collect Data
+    data = DataCollection(start_location, end_location)
 
     # Format Information
 
-    # Create file called 'trip_info'
-
-    # Write Fuel Economy, Fuel Capacity, Trip Budget, and Number 
-    # of Stops on 1 line each seperated by single spaces
-
-    # Write distance from current stop to next stop for all stops
-    # Write time from current stop to next stop for all stops
-
-    # Write time taken from the highway to the fuel stop back 
-    # to the highway for all stops
-
-    # Write Cost of Fuel
-
-    # End Data Collection Phase
-    pass
+    
+    return data
 
 Main()

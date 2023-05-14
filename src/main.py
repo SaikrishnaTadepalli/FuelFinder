@@ -51,18 +51,40 @@ def Main():
     # Get fuel economy from user right now. Change later to an API call
     fuelEconomy = float(input('\nEnter Fuel Economy: (in KM/L)\n>'))
     # ---------------------------------------------------------
-
-    print('\nHere is the final data:')
-    print(startingLocation)
-    print(endingLocation)
-    print(budget)
-    print(capacity)
-    print(fuelEconomy)
     
     # Begin Data Collection Phase
-    data_collection.Main()
+    data = data_collection.Main(startingLocation, endingLocation)
+
+    # Create file called 'trip_info' and write data to it
+    file_path = "trip_info"
+    file = open(file_path, "w")
+
+    # Write Fuel Economy, Fuel Capacity, Trip Budget, and Number 
+    # of Stops on 1 line each seperated by single spaces
+    file.write(fuelEconomy + " " + capacity + " " + budget + " " + len(data["Potential Fuel Stops"]))
+    
+    # Write the names and locations of each potential stop
+    line = " ".join([stop for stop in data["Potential Fuel Stops"]])
+    file.write(line)
+
+    # Write distance from current stop to next stop for all stops
+    line = " ".join([dist for dist in data["Fuel Stop Distances"]])
+    file.write(line)
+
+    # Write time taken from the highway to the fuel stop back 
+    # to the highway for all stops
+    line = " ".join([time for time in data["Time to Fuel Stops"]])
+    file.write(line)
+
+    # Write Cost of Fuel
+    line = " ".join([price for price in data["Fuel Prices"]])
+    file.write(line)
+    
+    # End Data Collection Phase
+    file.close()
 
     # Begin Calculation Phase
+
     calculation.Main()
 
 Main()
