@@ -124,9 +124,21 @@ def DataCollection(start_location, end_location):
     return [
         highway_names,
         potential_fuel_stops,
-        distance_between_fuel_stops,
+        distances,
         time_to_fuel_stops
     ]
+
+
+# COULDN'T FIND AN ONLINE DATABASE OF API FOR THIS
+# TRY PREDICTION OR WEB-SCRAPING
+# Check out: https://www.tomtom.com/products/fuel-services/
+def CalculateFuelPrice(stop):
+    pass
+    # IMPLEMENTATION HERE
+
+def get_fuel_prices(potential_fuel_stops):
+    fuel_prices = [CalculateFuelPrice(stop) for stop in potential_fuel_stops]
+    return fuel_prices
 
 
 def Main():
