@@ -84,7 +84,25 @@ def Main():
     file.close()
 
     # Begin Calculation Phase
+    result = calculation.Main()
 
-    calculation.Main()
+    if (result[0] == -1):
+        print('This trip is not possible. Here are a few possible reaons why:')
+        print('\t- The budget is too small')
+        print('\t- The car\'s fuel economy is too small')
+        print('\t- The car\'s fuel capacity is too small')
+    else:
+        print('This trip is possible. Here is the trip breakdown:')
+
+        print('\n\tHighway and major road names:')
+        for name in data['Highway Names']:
+            print('\t- ' + name)
+        
+        print('\n\tHere is your refueling scheme:')
+        for i in range(len(data["Potential Fuel Stops"])):
+            if result[1][i] != 0:
+                print('\t- Refuel ' + result[1][i] + 'L of fuel at \'' + data["Potential Fuel Stops"][i] + '\'')
+
+        print('\n\tOverall, your trip will take approximately ' + result[0] + ' minutes.')
 
 Main()

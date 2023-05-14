@@ -116,9 +116,7 @@ def Main():
         refuelTravelTime, 
         unitMoneyCost
     )
-
-    print(res[0])
-    if (res[0] != -1):
-        print(res[1])
+    
+    return res
 
 Main()
