@@ -5,7 +5,7 @@ from datetime import datetime
 gmaps = googlemaps.Client(key='YOUR_API_KEY')
 
 # Define the start and end locations
-start_location = '25 OceanPearl Crescent, Whitby, ON, Canada'
+start_location = 'Oshawa Center, Oshawa, ON, Canada'
 end_location = '252 Phillip Street West, Waterloo, ON, Canada'
 
 # Get the directions from Google Maps
